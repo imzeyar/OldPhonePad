@@ -55,10 +55,13 @@ namespace OldPhonePad
                 }
                 else if (item == '*')
                 {
-                    if (result.Length > 0)
+                    if (!string.IsNullOrEmpty(charText))
+                    {
+                        charText = string.Empty;
+                    }
+                    else if (result.Length > 0)
                     {
                         result = result.Substring(0, result.Length - 1);
-                        charText = string.Empty;
                     }
                     else
                     {
@@ -95,7 +98,7 @@ namespace OldPhonePad
 
             string charOptions = characters[digit - 2];
             int count = charText.Length;
-            return count > charOptions.Length ? string.Empty : charOptions[count - 1].ToString();
+            return charOptions[(count - 1) % charOptions.Length].ToString();
         }
     }
 }

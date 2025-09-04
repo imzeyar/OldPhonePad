@@ -37,12 +37,15 @@ namespace OldPhonePad
                 // Handle backspace
                 if (c == '*')
                 {
-                    if (result.Length > 0)
+                    if (currentDigit != '\0')
+                    {
+                        currentDigit = '\0';
+                        pressCount = 0;
+                    }
+                    else if (result.Length > 0)
                     {
                         result.Length--;
                     }
-                    currentDigit = '\0';
-                    pressCount = 0;
                     continue;
                 }
 
